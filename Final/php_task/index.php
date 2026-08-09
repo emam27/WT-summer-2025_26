@@ -157,3 +157,96 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <b>Membership Type:</b><br>
 
     <input type="radio" name="membership" value="Regular Member"
+
+
+     <?php if($membership=="Volunteer") echo "checked"; ?>>
+
+    Volunteer
+
+    <span style="color:red;">* <?php echo $membershipErr; ?></span>
+
+    <br><br>
+
+    <b>Department:</b><br>
+
+    <select name="department">
+
+        <option value="">-- Select Department --</option>
+
+        <option value="CSE"
+
+        <?php if($department=="CSE") echo "selected"; ?>>CSE</option>
+
+        <option value="EEE"
+
+        <?php if($department=="EEE") echo "selected"; ?>>EEE</option>
+
+        <option value="BBA"
+
+        <?php if($department=="BBA") echo "selected"; ?>>BBA</option>
+
+        <option value="English"
+
+        <?php if($department=="English") echo "selected"; ?>>English</option>
+
+        <option value="Architecture"
+
+        <?php if($department=="Architecture") echo "selected"; ?>>Architecture</option>
+
+    </select>
+
+    <span style="color:red;">* <?php echo $departmentErr; ?></span>
+
+    <br><br>
+
+    <b>Contact Number:</b><br>
+
+    <input type="text" name="phone" value="<?php echo $phone; ?>">
+
+    <span style="color:red;">* <?php echo $phoneErr; ?></span>
+
+    <br><br>
+
+    <input type="submit" value="Register">
+
+</form>
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"
+
+    && empty($nameErr)
+
+    && empty($ageErr)
+
+    && empty($emailErr)
+
+    && empty($membershipErr)
+
+    && empty($departmentErr)
+
+    && empty($phoneErr)) {
+
+    echo "<hr>";
+
+    echo "<h3>Registration Successful</h3>";
+
+    echo "Name: $name <br>";
+
+    echo "Age: $age <br>";
+
+    echo "Email: $email <br>";
+
+    echo "Membership: $membership <br>";
+
+    echo "Department: $department <br>";
+
+    echo "Phone: $phone <br>";
+
+}
+
+?>
+
+</body>
+
+</html>
