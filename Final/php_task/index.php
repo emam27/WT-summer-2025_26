@@ -1,4 +1,119 @@
 
+
+<?php
+
+$name = $age = $email = $membership = $department = $phone = "";
+
+$nameErr = $ageErr = $emailErr = $membershipErr = $departmentErr = $phoneErr = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Name Validation
+
+    if (empty($_POST["name"])) {
+
+        $nameErr = "Name is required";
+
+    } else {
+
+        $name = trim($_POST["name"]);
+
+        if (!preg_match("/^[a-zA-Z ]+$/", $name)) {
+
+            $nameErr = "Only letters and spaces are allowed";
+
+        }
+
+    }
+
+    // Age Validation
+
+    if (empty($_POST["age"])) {
+
+        $ageErr = "Age is required";
+
+    } else {
+
+        $age = $_POST["age"];
+
+        if (!is_numeric($age) || $age < 18 || $age > 30) {
+
+            $ageErr = "Age must be between 18 and 30";
+
+        }
+
+    }
+
+    // Email Validation
+
+    if (empty($_POST["email"])) {
+
+        $emailErr = "Email is required";
+
+    } else {
+
+        $email = trim($_POST["email"]);
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            $emailErr = "Invalid email format";
+
+        }
+
+    }
+
+    // Membership Validation
+
+    if (empty($_POST["membership"])) {
+
+        $membershipErr = "Please select a membership type.";
+
+    } else {
+
+        $membership = $_POST["membership"];
+
+    }
+
+    // Department Validation
+
+    if (empty($_POST["department"]) || $_POST["department"] == "") {
+
+        $departmentErr = "Please select your department.";
+
+    } else {
+
+        $department = $_POST["department"];
+
+    }
+
+    // Phone Validation
+
+    if (empty($_POST["phone"])) {
+
+        $phoneErr = "Phone number is required";
+
+    } else {
+
+        $phone = trim($_POST["phone"]);
+
+        if (!preg_match("/^[0-9]{11}$/", $phone)) {
+
+            $phoneErr = "Phone number must contain exactly 11 digits.";
+
+        }
+
+    }
+
+}
+
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 
 <html>
